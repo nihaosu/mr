@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ch">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		.o {color: red;}
+		.p {color: black;}
+	</style>
+</head>
+<body>
+	<script src="./index.js"></script>
+	<div id="1">
+	</div>
+	<script>
+		const div1 = document.getElementById('1');
+
+		const { useEl, useState, useEffect, op, withProp } = mR;
+
+		const div = useEl('div');
+		const a = useEl('a');
+		const img = useEl('img');
+		const span = useEl('span');
+
+		function Laa(props) {
+
+			const [num, setNum, getNum, mnum] = useState(8);
+			const [aa, setAa] = useState(0);
+			const [link, setLink, getLink] = useState('');
+
+			setLink('https://baidu.com');
+
+			useEffect(() => {
+				// console.log(getNum());
+				// console.log(456789);
+			}, [num])
+
+			useEffect(() => {
+				// console.log(getNum() + 'num0');
+				// console.log('num0');
+			}, [num])
+
+			setTimeout(() => {
+				setNum(0);
+				setAa(8);
+			}, 2000);
+
+			setTimeout(() => {
+				setNum(456);
+			}, 1000)
+
+			return div(
+				{
+					class: op('num > aa ? "aa" : "num"', 'num', 'aa', num, aa),
+					num,
+					show: op('num === 0', 'num', num),
+					style: op('`color: ${num > 2 ? "red" : "#159"}`', 'num', num),
+					root: true
+				},
+				num,
+				a({class: 'nihao_2', href: link, target: 'blank'},
+					'divdivdivsss'
+				),
+				img({
+					src: 'https://wx.qlogo.cn/mmhead/Q3auHgzwzM5jFKQSZXMEEOmTdC7CtF55Kib8NmjhVewqPgSPqXb1Y9Q/0',
+					width: '40px',
+					height: '40px',
+					onclick(e) {
+						if (getNum() !== 5) {
+							setNum(5);
+						} else {
+							setNum(1);
+						}
+					}
+				}),
+				div({}, 'divdivdivdivi'),
+				withProp(
+					Tem,
+					{
+						name: aa,
+					},
+					div(
+						{
+							style: "color: #fba"
+						},
+						'children'
+					),
+					num
+				),
+				span({ style: 'color: #059' }, 
+				'continue'
+				)
+			)
+		}
+
+		function Tem({ children, name }) {
+			return div({class: 'tem', style: 'color: red'},
+				'TemStart:',
+				...children,
+				div({},
+					op("`propName: ${name}`", 'name', name),
+					div({}, name)
+					),
+				'TemEnd'
+			)
+		}
+
+		div1.appendChild(withProp(Laa, null));
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ch">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		.o {color: red;}
+		.p {color: black;}
+	</style>
+</head>
+<body>
+	<script src="./index.js"></script>
+	<div id="1">
+	</div>
+	<script>
+		const div1 = document.getElementById('1');
+
+		const { useEl, useState, useEffect, op, tri } = mR;
+
+		const div = useEl('div');
+		const a = useEl('a');
+		const img = useEl('img');
+
+		function Tem(props) {
+			console.log(props);
+			return div({class: 'tem', style: 'color: red'},
+				'start:',
+				// ...children,
+				div(),
+				'the end'
+			)
+		}
+
+		function map(list, callBack) {
+			return [];
+			// const arr = [];
+			// for (let i = 0; i < list.length; i++) {
+			// 	arr.push(setAttr(list[i].id || i, callBack(list[i], i)));
+			// }
+			// return arr;
+		}
+
+		function filter(list, callBack) {}
+
+
+		function fn(obj, fname) {
+		}
+
+		function Laa(props) {
+
+			const [num, setNum] = useState(8);
+			const [la, setLa, getLa] = useState('o');
+			const [link, setLink] = useState('');
+			const [list, setList] = useState([]);
+			const [innerText, setInnerText] = useState('innerText');
+
+			setLink('https://baidu.com');
+
+			setTimeout(() => {
+				setNum(0);
+				// setLa('p');
+			}, 2000);
+
+			setTimeout(() => {
+				setInnerText('texttexttexttexttexttexttexttexttexttexttexttext');
+			}, 1000);
+
+			useEffect((...arg) => {
+				console.log(arg);
+			}, [num, innerText]);
+
+			return div(
+				{
+					class: tri(op(op(op(1, 2, '+'), op(3, num, '-'), '==='), op(la, num, '>'), '==='), 'la', num),
+					num,
+					show: op(num, '0', '===')
+				},
+				num,
+				div({ class: la }, innerText),
+				div({ style: 'postion: abslute'},
+					'nihaoD',
+					div({},
+						div(),
+						'ok;'
+					)
+				),
+				op(num, '7899', '+'),
+				...map(list, (item, index) => div({ class: item.name, onclick: item.onclick }, item.text)),
+				...[div({}, num), div({}, 'op'), div({ style: 'color: #770' }, '{[[]]}')],
+				789,
+				a({class: 'nihao_2', style: 'color: #000', href: link},
+					'divdivdivsss'
+				),
+				img({
+					src: 'https://wx.qlogo.cn/mmhead/Q3auHgzwzM5jFKQSZXMEEOmTdC7CtF55Kib8NmjhVewqPgSPqXb1Y9Q/0',
+					width: '40px',
+					height: '40px',
+					onclick(e) {
+						setLa(getLa() === 'p' ? 'o' : 'p');
+						console.log('click');
+					}
+				}),
+				// Tem({show: false},
+				// 	div({ style: 'color: blue' }, '00000'),
+				// 	div({}, '11111'),
+				// 	'文本'
+				// )
+			)
+		}
+
+		div1.appendChild(Laa());
+
+	</script>
+</body>
+</html>
